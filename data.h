@@ -1,8 +1,18 @@
-//
-// Created by Logan on 11/13/2021.
-//
+#ifndef DATA_H
+#define DATA_H
 
-#ifndef SIMPLE_LINKED_LIST_DATA_H
-#define SIMPLE_LINKED_LIST_DATA_H
+#include "string"
+using std::string;
 
-#endif //SIMPLE_LINKED_LIST_DATA_H
+struct Data {
+    int id;
+    string data;
+};
+
+struct Node {
+    Data data;
+    Node *next;
+    Node *prev;
+};
+
+#endif /* DATA_H */
