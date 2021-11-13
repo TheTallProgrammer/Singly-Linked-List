@@ -29,12 +29,13 @@ private:
 
     // Pointer to the first node
     Node *head;
+    int count;
 
     // Private methods
     void initializeNode(int *, string*, Node*);
-    bool checkOperation(Node *, Node *, Node *, int *);
+    bool checkOperation(Node *, Node *, int *);
     void insertHead(Node *);
-    void insertMiddle(Node *, Node *, Node *);
+    void insertMiddle(Node *, Node *);
     void insertTail(Node *, Node *);
 
 }; // End of class LinkedList
