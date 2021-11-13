@@ -1,8 +1,14 @@
-//
-// Created by Logan on 11/13/2021.
-//
+#ifndef MAIN_H
+#define MAIN_H
 
-#ifndef SIMPLE_LINKED_LIST_MAIN_H
-#define SIMPLE_LINKED_LIST_MAIN_H
+#include <iostream>     /* cout, endl */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
-#endif //SIMPLE_LINKED_LIST_MAIN_H
+#include "testdata.h"
+#include "linkedlist.h"
+
+using std::cout;
+using std::endl;
+
+#endif /* MAIN_H */
