@@ -5,4 +5,14 @@
 #ifndef SIMPLE_LINKED_LIST_LINKEDLIST_H
 #define SIMPLE_LINKED_LIST_LINKEDLIST_H
 
+class LinkedList{
+
+    public:
+
+
+    private:
+    
+
+};
+
 #endif //SIMPLE_LINKED_LIST_LINKEDLIST_H
