@@ -57,7 +57,14 @@ bool LinkedList::clearList(){
 } // End of clearList
 
 bool LinkedList::exists(int id){
+    Node *position = head;
     bool doesExist = false;
+    while(position!=nullptr){
+        if(id == position->data.id){
+            doesExist = true;
+        }
+        position = position->next;
+    }
     return doesExist;
 } // End of exists
 
