@@ -33,7 +33,6 @@ bool LinkedList::getNode(int id, Data* newStruct){
 void LinkedList::printList(bool backward){
     Node *position = head;
     int count = 1;
-
     if(!backward && position!= nullptr) {
         while (position != nullptr) {
             std::cout << "\t" << count << ": " << position->data.id << " : " << position->data.data << std::endl;
@@ -47,6 +46,13 @@ int LinkedList::getCount(){return count;} // End of getCount
 
 bool LinkedList::clearList(){
     bool didClear = false;
+    Node *position;
+    while(head!=nullptr){
+        position = head;
+        head = head->next;
+        delete position;
+        didClear = true;
+    }
     return didClear;
 } // End of clearList
 
