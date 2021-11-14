@@ -20,8 +20,7 @@ bool LinkedList::addNode(int id, string *data){
     if(id >= 0 && data->length() > 0 ) {
         while ((head != nullptr) && id > position->data.id && position->next != nullptr) {// Loops through the list to find a spot for the node
             position = position->next;
-        }
-        if(head != nullptr && id == position->data.id){}
+        }if(head != nullptr && id == position->data.id){}
         else if (head == nullptr) {// First head node
             Node *newNode = new Node();
             initializeNode(&id, data, newNode);
@@ -47,8 +46,7 @@ bool LinkedList::deleteNode(int id){
                 position->next = nullptr;
                 delete position;
                 didDelete = true;
-            }
-            else if (position->next){ // Deleting middle node
+            }else if (position->next){ // Deleting middle node
                 Node *curr, *prev;
                 curr = head;
                 while(curr != position){
@@ -58,8 +56,7 @@ bool LinkedList::deleteNode(int id){
                 prev->next = curr->next;
                 delete position;
                 didDelete = true;
-            }
-            else if (position->next == nullptr){ // Deleting tail node
+            }else if (position->next == nullptr){ // Deleting tail node
                 Node*prev= nullptr;
                 Node*curr= head;
                 while(curr!=position){
@@ -70,7 +67,6 @@ bool LinkedList::deleteNode(int id){
                 tail = prev;
                 delete position;
                 didDelete = true;
-
             }
         }
         position = position->next;
@@ -163,12 +159,10 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
     if(head->data.id > newNode->data.id){// new head
         insertHead(newNode);
         didAdd = true;
-    }
-    else if(position->data.id > *id) {// Insert middle node
+    }else if(position->data.id > *id) {// Insert middle node
         insertMiddle(position, newNode);
         didAdd = true;
-    }
-    else {
+    }else {
         insertTail(position, newNode);// Adds tail node
         didAdd = true;
     }
