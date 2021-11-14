@@ -70,6 +70,7 @@ bool LinkedList::clearList(){
         head = head->next;
         delete position;
         didClear = true;
+        count = 0;
     }
     return didClear;
 } // End of clearList
@@ -99,14 +100,16 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
     if(head->data.id > newNode->data.id){// new head
         insertHead(newNode);
         didAdd = true;
+        count++;
     }
-//    else if(position->data.id > *id) {// Insert middle node
-//        insertMiddle(prevPos, position, newNode);
-//        didAdd = true;
-//    }
+    else if(position->data.id > *id) {// Insert middle node
+        insertMiddle(prevPos, position, newNode);
+        didAdd = true;
+    }
     else {
         insertTail(position, newNode);// Adds tail node
         didAdd = true;
+        count++;
     }
     return didAdd;
 } // End of checkOperation
@@ -117,9 +120,12 @@ void LinkedList::insertHead(Node *newNode){
 } // End of inserthead
 
 void LinkedList::insertMiddle(Node *position, Node *newNode){
-
+    prevPos->next = newNode;
+    newNode->prev = prevPos;
+    newNode->next = position;
+    position->prev = newNode;
 } // End of insertMiddle
 
 void LinkedList::insertTail(Node *position, Node *newNode){
-
+    position->next = newNode;
 } // End of insertTail
