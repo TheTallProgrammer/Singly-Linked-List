@@ -6,6 +6,7 @@
 
 LinkedList::LinkedList() {
     head = nullptr;
+    tail = nullptr;
     count = 0;
 } // End of constructor
 
@@ -58,7 +59,7 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
 
 void LinkedList::insertHead(Node *newNode){
 
-} // End of iserthead
+} // End of inserthead
 
 void LinkedList::insertMiddle(Node *position, Node *newNode){
 

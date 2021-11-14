@@ -28,7 +28,7 @@ public:
 private:
 
     // Pointer to the first node
-    Node *head;
+    Node *head, *tail;
     int count;
 
     // Private methods
