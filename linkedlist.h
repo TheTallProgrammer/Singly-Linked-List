@@ -24,12 +24,12 @@ public:
     int getCount();
     bool clearList();
     bool exists(int);
+    bool getTail();
 
 private:
 
     // Pointer to the first node
     Node *head, *tail;
-    int count;
 
     // Private methods
     void initializeNode(int *, string*, Node*);

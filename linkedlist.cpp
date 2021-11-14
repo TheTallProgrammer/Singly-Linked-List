@@ -6,7 +6,6 @@
 
 LinkedList::LinkedList() {
     head = nullptr, tail = nullptr;
-    count = 0;
 } // End of constructor
 
 LinkedList::~LinkedList(){
@@ -27,8 +26,8 @@ bool LinkedList::addNode(int id, string *data){
             Node *newNode = new Node();
             initializeNode(&id, data, newNode);
             head = newNode;
+            tail = newNode;
             didAdd = true;
-            count++;
         } else if (head != nullptr){
             Node *newNode = new Node();
             initializeNode(&id, data, newNode);
@@ -40,6 +39,41 @@ bool LinkedList::addNode(int id, string *data){
 
 bool LinkedList::deleteNode(int id){
     bool didDelete = false;
+    Node *position = head;
+    while(position!=nullptr && !didDelete){
+        if (id == position->data.id){ // Deleting head node
+            if (position == head) {
+                head = head->next;
+                position->next = nullptr;
+                delete position;
+                didDelete = true;
+            }
+            else if (position->next){ // Deleting middle node
+                Node *curr, *prev;
+                curr = head;
+                while(curr != position){
+                    prev = curr;
+                    curr = curr->next;
+                }
+                prev->next = curr->next;
+                delete position;
+                didDelete = true;
+            }
+            else if (position->next == nullptr){ // Deleting tail node
+                Node*prev= nullptr;
+                Node*curr= head;
+                while(curr!=position){
+                    prev= curr;
+                    curr=curr->next;
+                }
+                prev->next= nullptr;
+                delete position;
+                didDelete = true;
+
+            }
+        }
+        position = position->next;
+    }
     return didDelete;
 } // End of deleteNode
 
@@ -60,7 +94,15 @@ void LinkedList::printList(bool backward){
     }
 } // End of printList
 
-int LinkedList::getCount(){return count;} // End of getCount
+int LinkedList::getCount(){
+    int count = 0;
+    Node *position = head;
+    while(head != nullptr && position != nullptr){
+        count++;
+        position = position->next;
+    }
+    return count;
+} // End of getCount
 
 bool LinkedList::clearList(){
     bool didClear = false;
@@ -70,7 +112,6 @@ bool LinkedList::clearList(){
         head = head->next;
         delete position;
         didClear = true;
-        count = 0;
     }
     return didClear;
 } // End of clearList
@@ -87,6 +128,11 @@ bool LinkedList::exists(int id){
     return doesExist;
 } // End of exists
 
+bool LinkedList::getTail(){
+    bool hasTail = false;
+    return hasTail;
+} // End of getTail
+
 
 // Private methods
 void LinkedList::initializeNode(int *id, string *data, Node *newNode){
@@ -100,7 +146,6 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
     if(head->data.id > newNode->data.id){// new head
         insertHead(newNode);
         didAdd = true;
-        count++;
     }
     else if(position->data.id > *id) {// Insert middle node
         insertMiddle(position, newNode);
@@ -109,7 +154,6 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
     else {
         insertTail(position, newNode);// Adds tail node
         didAdd = true;
-        count++;
     }
     return didAdd;
 } // End of checkOperation
@@ -132,5 +176,6 @@ void LinkedList::insertMiddle(Node *position, Node *newNode){
 
 void LinkedList::insertTail(Node *position, Node *newNode){
     position->next = newNode;
+    tail = newNode;
     newNode->next = nullptr;
 } // End of insertTail
