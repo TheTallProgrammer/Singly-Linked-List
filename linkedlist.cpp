@@ -103,7 +103,7 @@ bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
         count++;
     }
     else if(position->data.id > *id) {// Insert middle node
-        insertMiddle(prevPos, position, newNode);
+        insertMiddle(position, newNode);
         didAdd = true;
     }
     else {
@@ -120,12 +120,17 @@ void LinkedList::insertHead(Node *newNode){
 } // End of inserthead
 
 void LinkedList::insertMiddle(Node *position, Node *newNode){
-    prevPos->next = newNode;
-    newNode->prev = prevPos;
-    newNode->next = position;
-    position->prev = newNode;
+    Node *prev;
+    Node *curr = head;
+    while(curr != position){
+        prev = curr;
+        curr = curr->next;
+    }
+    prev->next = newNode;
+    newNode->next = curr;
 } // End of insertMiddle
 
 void LinkedList::insertTail(Node *position, Node *newNode){
     position->next = newNode;
+    newNode->next = nullptr;
 } // End of insertTail
