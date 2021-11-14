@@ -65,6 +65,15 @@ int main() {
     }
     cout << endl;
 
+    Data data;
+    cout << "getting tail node" << endl;
+    if(list.getTail(&data)){
+        cout << "found " << data.id << ": " << data.data << endl;
+    } else {
+        cout << "failed to find tail" << std::endl;
+    }
+    cout << endl;
+
     //randomly checking for a few ids
     for (int i = 0; i < 4; i++) {
         getid = testdata.getRandomId();

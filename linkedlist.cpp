@@ -67,6 +67,7 @@ bool LinkedList::deleteNode(int id){
                     curr=curr->next;
                 }
                 prev->next= nullptr;
+                tail = prev;
                 delete position;
                 didDelete = true;
 
@@ -78,7 +79,18 @@ bool LinkedList::deleteNode(int id){
 } // End of deleteNode
 
 bool LinkedList::getNode(int id, Data* newStruct){
+    Node *position = head;
     bool gotNode = false;
+
+    while (position != nullptr && !gotNode) {
+        if(id == position->data.id){
+            newStruct->id = position->data.id;
+            newStruct->data = position->data.data;
+            gotNode = true;
+        } else{
+            position = position->next;
+        }
+    }
     return gotNode;
 } // End of getNode
 
@@ -128,8 +140,13 @@ bool LinkedList::exists(int id){
     return doesExist;
 } // End of exists
 
-bool LinkedList::getTail(){
+bool LinkedList::getTail(Data *data){
     bool hasTail = false;
+    if(tail!= nullptr){
+        data->id = tail->data.id;
+        data->data = tail->data.data;
+        hasTail = true;
+    }
     return hasTail;
 } // End of getTail
 

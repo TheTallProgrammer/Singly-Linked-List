@@ -24,7 +24,7 @@ public:
     int getCount();
     bool clearList();
     bool exists(int);
-    bool getTail();
+    bool getTail(Data *);
 
 private:
 
