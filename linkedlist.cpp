@@ -71,7 +71,9 @@ bool LinkedList::exists(int id){
 
 // Private methods
 void LinkedList::initializeNode(int *id, string *data, Node *newNode){
-
+    newNode->data.id = *id;
+    newNode->data.data = *data;
+    newNode->next = nullptr;
 } // End of initializeNode
 
 bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
