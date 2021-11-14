@@ -16,6 +16,7 @@ LinkedList::~LinkedList(){
 //Methods
 bool LinkedList::addNode(int id, string *data){
     bool didAdd = false;
+
     return didAdd;
 } // End of addNode
 
@@ -30,7 +31,16 @@ bool LinkedList::getNode(int id, Data* newStruct){
 } // End of getNode
 
 void LinkedList::printList(bool backward){
+    Node *position = head;
+    int count = 1;
 
+    if(!backward && position!= nullptr) {
+        while (position != nullptr) {
+            std::cout << "\t" << count << ": " << position->data.id << " : " << position->data.data << std::endl;
+            position = position->next;
+            count += 1;
+        }
+    }
 } // End of printList
 
 int LinkedList::getCount(){return count;} // End of getCount
