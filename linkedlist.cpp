@@ -5,8 +5,7 @@
 #include "linkedlist.h"
 
 LinkedList::LinkedList() {
-    head = nullptr;
-    tail = nullptr;
+    head = nullptr, tail = nullptr;
     count = 0;
 } // End of constructor
 
