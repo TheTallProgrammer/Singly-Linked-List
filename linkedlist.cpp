@@ -16,7 +16,25 @@ LinkedList::~LinkedList(){
 //Methods
 bool LinkedList::addNode(int id, string *data){
     bool didAdd = false;
+    Node *position = head;
 
+    if(id >= 0 && data->length() > 0 ) {
+        while ((head != nullptr) && id > position->data.id && position->next != nullptr) {// Loops through the list to find a spot for the node
+            position = position->next;
+        }
+        if(head != nullptr && id == position->data.id){}
+        else if (head == nullptr) {// First head node
+            Node *newNode = new Node();
+            initializeNode(&id, data, newNode);
+            head = newNode;
+            didAdd = true;
+            count++;
+        } else if (head != nullptr){
+            Node *newNode = new Node();
+            initializeNode(&id, data, newNode);
+            didAdd = checkOperation(position, newNode, &id);
+        }
+    }
     return didAdd;
 } // End of addNode
 
@@ -32,12 +50,12 @@ bool LinkedList::getNode(int id, Data* newStruct){
 
 void LinkedList::printList(bool backward){
     Node *position = head;
-    int count = 1;
+    int loopCount = 1;
     if(!backward && position!= nullptr) {
         while (position != nullptr) {
-            std::cout << "\t" << count << ": " << position->data.id << " : " << position->data.data << std::endl;
+            std::cout << "\t" << loopCount << ": " << position->data.id << " : " << position->data.data << std::endl;
             position = position->next;
-            count += 1;
+            loopCount += 1;
         }
     }
 } // End of printList
