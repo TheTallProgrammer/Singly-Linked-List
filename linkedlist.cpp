@@ -96,11 +96,24 @@ void LinkedList::initializeNode(int *id, string *data, Node *newNode){
 
 bool LinkedList::checkOperation(Node *position, Node *newNode, int *id){
     bool didAdd = false;
+    if(head->data.id > newNode->data.id){// new head
+        insertHead(newNode);
+        didAdd = true;
+    }
+//    else if(position->data.id > *id) {// Insert middle node
+//        insertMiddle(prevPos, position, newNode);
+//        didAdd = true;
+//    }
+    else {
+        insertTail(position, newNode);// Adds tail node
+        didAdd = true;
+    }
     return didAdd;
 } // End of checkOperation
 
 void LinkedList::insertHead(Node *newNode){
-
+    newNode->next = head;
+    head = newNode;
 } // End of inserthead
 
 void LinkedList::insertMiddle(Node *position, Node *newNode){
